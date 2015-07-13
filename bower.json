@@ -1,0 +1,20 @@
+{
+  "name": "rails-angular-integration",
+  "version": "0.0.0",
+  "authors": [
+    "kouch-chivorn <kouch.chivorn@framgia.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.2",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.5"
+  }
+}
