@@ -1,4 +1,4 @@
-angular.module('flapperNews', ['ui.router',"templates"])
+angular.module('flapperNews', ['ui.router',"templates","Devise"])
   .config(["$stateProvider","$urlRouterProvider",
     function($stateProvider,$urlRouterProvider){
       $stateProvider
@@ -15,7 +15,12 @@ angular.module('flapperNews', ['ui.router',"templates"])
         .state('posts',{
           url: '/posts/{id}',
           templateUrl: 'posts/_posts.html',
-          controller: 'PostsCtrl'
+          controller: 'PostsCtrl',
+          resolve: {
+            post: ["$stateParams", "Post", function($stateParams, Post){
+              return Post.get($stateParams.id);
+            }]
+          }
         });
       $urlRouterProvider.otherwise("home");
     }])

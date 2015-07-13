@@ -1,18 +1,20 @@
 angular.module("flapperNews")
-.controller('PostsCtrl',['$scope',"$stateParams","Post",
-    function($scope,$stateParams,Post){
-      $scope.post = Post.posts[$stateParams.id];
+.controller('PostsCtrl',['$scope',"post","Post",
+    function($scope,post,Post){
+      $scope.post = post;
       $scope.addComment = function(){
         if(!$scope.body){return;}
-        $scope.post.comments.push({
+        Post.addComment(post.id, {
           author: "Rathanak",
           body: $scope.body,
           like: 0
+        }).success(function(comment){
+          $scope.post.comments.push(comment);
         });
         $scope.body = "";
       };
       $scope.incrementLikes = function(comment){
-        comment.like +=1;
+        Post.likeComment(post,comment);
       };
     }]);
   
