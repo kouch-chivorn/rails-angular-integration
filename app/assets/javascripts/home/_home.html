@@ -31,7 +31,7 @@
             </a>
             <span ng-hide="post.link">
               {{post.title}}
-            </span> has {{post.view}} views and {{post.like}} likes-----
+            </span> has {{post.view}} views and {{post.like}} likes-----Posted by <a ng-href="#/users/{{post.user.username}}">{{post.user.username}}</a>
         <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementLikes(post)"></span>
         </span>
         <span>

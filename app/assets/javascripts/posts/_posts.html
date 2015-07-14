@@ -11,7 +11,7 @@
 <div ng-repeat="comment in post.comments | orderBy:'-like'">
   <span style="font-size:20px; margin-left:10px;">
           {{comment.body}}
-        </span> - by {{comment.author}} {{comment.like}}
+        </span> - by {{comment.user.username}} with {{comment.like}} Likes
   <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementLikes(comment)"></span>
 </div>
 <form ng-submit="addComment()" style="margin-top:30px;">

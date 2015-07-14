@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :like]
 
   def index
     respond_with Post.all
   end
 
   def create
-    respond_with Post.create post_params
+    respond_with Post.create post_params.merge(user_id: current_user.id)
   end
 
   def show

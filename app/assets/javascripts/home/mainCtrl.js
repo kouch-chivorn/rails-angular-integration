@@ -9,8 +9,6 @@ angular.module("flapperNews")
         }
         Post.create({
           title: $scope.title,
-          //view: 0,
-          //like: 0,
           link: $scope.link
         });
         $scope.title = '';
