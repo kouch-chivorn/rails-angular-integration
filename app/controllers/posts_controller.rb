@@ -15,12 +15,14 @@ class PostsController < ApplicationController
 
   def like
     post = Post.find params[:id]
-    post.increment! :like
+    @vote.votable = post
+    if post.votes
+      post.increment! :like
 
-    respond_with post
+      respond_with post
+    end
+    private
+    def post_params
+      params.require(:post).permit(:link, :title)
+    end
   end
-  private
-  def post_params
-    params.require(:post).permit(:link, :title)
-  end
-end
