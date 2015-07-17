@@ -15,7 +15,6 @@ angular.module("flapperNews")
 
     	$scope.$on("devise:login", function(e, user){
     		$scope.user = user;
-            console.log($scope.signedIn());
     	});
 
     	$scope.$on("devise:logout", function(e,user){

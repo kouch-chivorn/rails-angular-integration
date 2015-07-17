@@ -19,7 +19,9 @@ angular.module("flapperNews")
     o.like = function(post){
       return $http.put("/posts/" + post.id + "/like.json")
         .success(function(data){
-          post.like +=1;
+          if(!data.error){
+            post.like +=1;
+          }      
         });
     };
 

@@ -1,6 +1,7 @@
-angular.module('flapperNews', ['ui.router',"templates","Devise"])
+angular.module('flapperNews', ['ui.router',"templates","Devise","flash"])
   .config(["$stateProvider","$urlRouterProvider",
     function($stateProvider,$urlRouterProvider){
+      flashProvider.infoClassnames.push("info");
       $stateProvider
         .state('home',{
           url: '/home',

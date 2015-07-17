@@ -1,7 +1,7 @@
 angular.module("flapperNews")
 .controller('MainCtrl', [
-    '$scope','Post',
-    function($scope,Post) {
+    '$scope','Post',"flash",
+    function($scope,Post,flash) {
      $scope.posts = Post.posts;
       $scope.addPost = function() {
         if (!$scope.title) {
@@ -15,7 +15,12 @@ angular.module("flapperNews")
         $scope.link = '';
       };
       $scope.incrementLikes = function(post) {
-        Post.like(post) +=1;
+        Post.like(post).success(function(data){
+          if(data.error){
+            console.log(1);
+            flash.create("success","You've already liked it!","custom-class");
+          }
+        });
       };
       $scope.orderProp = "title";
     }

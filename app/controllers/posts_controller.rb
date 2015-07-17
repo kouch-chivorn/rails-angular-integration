@@ -15,14 +15,16 @@ class PostsController < ApplicationController
 
   def like
     post = Post.find params[:id]
-    @vote.votable = post
-    if post.votes
+    vote = post.votes.new user_id: current_user.id
+    if vote.save
       post.increment! :like
-
       respond_with post
-    end
-    private
-    def post_params
-      params.require(:post).permit(:link, :title)
+    else
+      render json: {error: vote.errors.full_messages}
     end
   end
+  private
+  def post_params
+    params.require(:post).permit(:link, :title)
+  end
+end

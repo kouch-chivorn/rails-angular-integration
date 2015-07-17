@@ -1,40 +1,41 @@
-      <div class="page-header">
-        <h1>Flapper News</h1>
-      </div>
-      <form ng-submit="addPost()" style="margin-top:30px;">
-        <h3>Add a new post</h3>
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Title" ng-model="title"></input>
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Link" ng-model="link"></input>
-        </div>
-        <button type="submit" class="btn btn-primary">Post</button>
-      </form>
-      <div class="form-group">
-        <span>Search By:
+<div class="page-header">
+    <h1>Flapper News</h1>
+</div>
+<form ng-submit="addPost()" style="margin-top:30px;">
+    <h3>Add a new post</h3>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Title" ng-model="title"></input>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Link" ng-model="link"></input>
+    </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+</form>
+<div class="form-group">
+    <span>Search By:
             <input type="text" ng-model="query" placeholder="Search" class="form-control"></input>
       </span>
-        <br>
-        <span>Sort By:
+    <br>
+    <span>Sort By:
           <select ng-model="orderProp" class="form-control" style="width:30%">
             <option value="title">Alphabetically</option>
             <option value="-view">Views</option>
             <option value="-like">Likes</option>
           </select>
           </span>
-      </div>
-      <div ng-repeat="post in posts | orderBy:orderProp | filter:query">
-        <span style="font-size:20px; margin-left:10px;">
+</div>
+<div flash-message="5000"></div>
+<div ng-repeat="post in posts | orderBy:orderProp | filter:query">
+    <span style="font-size:20px; margin-left:10px;">
             <a ng-show="post.link" href="{{post.link}}">
               {{post.title}}
             </a>
             <span ng-hide="post.link">
               {{post.title}}
             </span> has {{post.view}} views and {{post.like}} likes-----Posted by <a ng-href="#/users/{{post.user.username}}">{{post.user.username}}</a>
-        <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementLikes(post)"></span>
-        </span>
-        <span>
+    <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementLikes(post)"></span>
+    </span>
+    <span>
           <a href="#/posts/{{post.id}}">Comments</a>
         </span>
-      </div>
+</div>

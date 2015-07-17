@@ -14,4 +14,5 @@
 //= require angular-devise
 //= require angular-ui-router 
 //= require angular-rails-templates
+//= require angular-flash
 //= require_tree .
