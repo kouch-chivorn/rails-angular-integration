@@ -1,7 +1,7 @@
-angular.module('flapperNews', ['ui.router',"templates","Devise","flash"])
+angular.module('flapperNews', ['ui.router',"templates","Devise",
+	"angular-flash.service","angular-flash.flash-alert-directive","bgf.paginateAnything"])
   .config(["$stateProvider","$urlRouterProvider",
     function($stateProvider,$urlRouterProvider){
-      flashProvider.infoClassnames.push("info");
       $stateProvider
         .state('home',{
           url: '/home',
@@ -45,6 +45,10 @@ angular.module('flapperNews', ['ui.router',"templates","Devise","flash"])
         });
       $urlRouterProvider.otherwise("home");
     }])
-  
-
+  	.config(function(flashProvider){
+  		flashProvider.errorClassnames.push("alert-danger");
+  		flashProvider.warnClassnames.push("alert-warning");
+  		flashProvider.successClassnames.push("alert-success");
+  		flashProvider.infoClassnames.push("alert-info");
+  	});
 
