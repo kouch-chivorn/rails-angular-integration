@@ -1,17 +1,19 @@
-angular.module('flapperNews', ['ui.router',"templates","Devise","flash"])
+angular.module('flapperNews', ['ui.router',"templates","Devise",
+	"angular-flash.service","angular-flash.flash-alert-directive",
+  "angularUtils.directives.dirPagination"])
   .config(["$stateProvider","$urlRouterProvider",
     function($stateProvider,$urlRouterProvider){
-      flashProvider.infoClassnames.push("info");
       $stateProvider
         .state('home',{
-          url: '/home',
+          url: "/home",
           templateUrl: 'home/_home.html',
-          controller: 'MainCtrl',
-          resolve: {
-            postPromise: ["Post", function(Post){
-              return Post.getAll();
-            }]
-          }
+          controller: 'MainCtrl'
+          // ,
+          // resolve: {
+          //   postPromise: ["Post", function(Post){
+          //     return Post.getAll(1);
+          //   }]
+          // }
         })
         .state('posts',{
           url: '/posts/{id}',
@@ -45,6 +47,10 @@ angular.module('flapperNews', ['ui.router',"templates","Devise","flash"])
         });
       $urlRouterProvider.otherwise("home");
     }])
-  
-
+  	.config(function(flashProvider){
+  		flashProvider.errorClassnames.push("alert-danger");
+  		flashProvider.warnClassnames.push("alert-warning");
+  		flashProvider.successClassnames.push("alert-success");
+  		flashProvider.infoClassnames.push("alert-info");
+  	});
 

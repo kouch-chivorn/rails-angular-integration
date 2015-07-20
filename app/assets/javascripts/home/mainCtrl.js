@@ -2,7 +2,20 @@ angular.module("flapperNews")
 .controller('MainCtrl', [
     '$scope','Post',"flash",
     function($scope,Post,flash) {
-     $scope.posts = Post.posts;
+      Post.getAll(1);
+      data = $.parseJSON(Post);
+      $scope.totalPosts = data;
+      $scope.posts = Post.posts;
+     
+      console.log($scope.totalPosts);
+     $scope.postsPerPage = 10;
+     $scope.pagination = {
+      current: 1
+     };
+
+     $scope.pageChanged = function(newPage){
+        Post.getAll(newPage);
+     };
       $scope.addPost = function() {
         if (!$scope.title) {
           return;
@@ -17,8 +30,7 @@ angular.module("flapperNews")
       $scope.incrementLikes = function(post) {
         Post.like(post).success(function(data){
           if(data.error){
-            console.log(1);
-            flash.create("success","You've already liked it!","custom-class");
+           	flash.info = "You've already like this!";
           }
         });
       };
