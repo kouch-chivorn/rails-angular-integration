@@ -1,17 +1,22 @@
 angular.module('flapperNews', ['ui.router',"templates","Devise",
-	"angular-flash.service","angular-flash.flash-alert-directive","bgf.paginateAnything"])
+	"angular-flash.service","angular-flash.flash-alert-directive",
+  "angularUtils.directives.dirPagination"])
   .config(["$stateProvider","$urlRouterProvider",
     function($stateProvider,$urlRouterProvider){
       $stateProvider
         .state('home',{
-          url: '/home',
+          url: "/home?page",
           templateUrl: 'home/_home.html',
-          controller: 'MainCtrl',
+          controller: 'MainCtrl'
+          ,
+          params: {page: "1"},
           resolve: {
-            postPromise: ["Post", function(Post){
-              return Post.getAll();
+            postPromise: ["Post","$stateParams", function(Post,$stateParams){
+              console.log($stateParams);
+              return Post.getAll($stateParams.page);
             }]
           }
+          
         })
         .state('posts',{
           url: '/posts/{id}',

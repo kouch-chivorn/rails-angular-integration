@@ -1,6 +1,6 @@
 angular.module("flapperNews")
-.controller('PostsCtrl',['$scope',"post","Post",
-    function($scope,post,Post){
+.controller('PostsCtrl',['$scope',"post","Post","flash",
+    function($scope,post,Post,flash){
       $scope.post = post;
       $scope.addComment = function(){
         if(!$scope.body){return;}
@@ -14,7 +14,11 @@ angular.module("flapperNews")
         $scope.body = "";
       };
       $scope.incrementLikes = function(comment){
-        Post.likeComment(post,comment);
+        Post.likeComment(post,comment).success(function(data){
+          if(data.error){
+              flash.info = "You've already liked it!";
+          }
+        });
       };
     }]);
   

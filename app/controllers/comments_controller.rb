@@ -10,9 +10,13 @@ class CommentsController < ApplicationController
   def like
     post = Post.find params[:post_id]
     comment = post.comments.find params[:id]
-    comment.increment! :like
-
-    respond_with post, comment
+    vote = comment.votes.new user_id: current_user.id
+    if vote.save
+      comment.increment! :like
+      respond_with post, comment
+    else
+      render json: {error: vote.errors.full_messages}
+    end
   end
   private
   def comment_params

@@ -15,5 +15,5 @@
 //= require angular-ui-router 
 //= require angular-rails-templates
 //= require angular-flash
-//= require angular-paginate-anything/dist/paginate-anything-tpls
+//= require angular-utils-pagination/dirPagination
 //= require_tree .

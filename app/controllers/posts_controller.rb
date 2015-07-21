@@ -2,7 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :like]
 
   def index
-    respond_with Post.all
+    # respond_with Post.all
+    count = Post.all.length
+    render json: { Count: count, Posts: Post.paginate(page: params[:page], per_page: Settings.page_size)
+                   }
   end
 
   def create
@@ -25,6 +28,6 @@ class PostsController < ApplicationController
   end
   private
   def post_params
-    params.require(:post).permit(:link, :title)
+    params.require(:post).permit(:link, :title, :description)
   end
 end

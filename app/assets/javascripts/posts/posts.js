@@ -1,12 +1,15 @@
 angular.module("flapperNews")
     .factory('Post', ["$http", function($http) {
         var o = {
-            posts: []
+            posts: [],
+            totalCount: 0
         };
 
-        o.getAll = function() {
-            return $http.get("/posts.json").success(function(data) {
-                angular.copy(data, o.posts);
+        o.getAll = function(pageNumber) {
+            return $http.get("/posts.json?page="+pageNumber).success(function(result) {
+                o.totalCount = result.Count;
+                console.log(o.totalCount);
+                angular.copy(result.Posts, o.posts);
             });
         };
 
@@ -38,7 +41,9 @@ angular.module("flapperNews")
         o.likeComment = function(post, comment) {
             return $http.put("/posts/" + post.id + "/comments/" + comment.id + "/like.json")
                 .success(function(data) {
-                    comment.like += 1;
+                    if(!data.error){
+                        comment.like += 1;
+                    }
                 });
         };
         return o;
