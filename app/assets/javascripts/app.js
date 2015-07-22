@@ -12,7 +12,6 @@ angular.module('flapperNews', ['ui.router',"templates","Devise",
           params: {page: "1"},
           resolve: {
             postPromise: ["Post","$stateParams", function(Post,$stateParams){
-              console.log($stateParams);
               return Post.getAll($stateParams.page);
             }]
           }

@@ -2,21 +2,17 @@ angular.module("flapperNews")
 .controller('MainCtrl', [
     '$scope','Post',"flash",
     function($scope,Post,flash) {
-      Post.getAll(1);
-      
       $scope.data = Post;
-
       $scope.posts = Post.posts;
-     
-      console.log($scope.totalPosts);
-     $scope.postsPerPage = 10;
-     $scope.pagination = {
-      current: 1
-     };
+      $scope.postsPerPage = 10;
+      $scope.pagination = {
+        current: 1
+      };
 
-     $scope.pageChanged = function(newPageNumber){
+      $scope.pageChanged = function(newPageNumber){
         Post.getAll(newPageNumber);
-     };
+      };
+
       $scope.addPost = function() {
         if (!$scope.title) {
           return;

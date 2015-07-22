@@ -8,7 +8,6 @@ angular.module("flapperNews")
         o.getAll = function(pageNumber) {
             return $http.get("/posts.json?page="+pageNumber).success(function(result) {
                 o.totalCount = result.Count;
-                console.log(o.totalCount);
                 angular.copy(result.Posts, o.posts);
             });
         };
