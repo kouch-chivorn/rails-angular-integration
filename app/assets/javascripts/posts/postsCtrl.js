@@ -1,5 +1,4 @@
-angular.module("flapperNews")
-.controller('PostsCtrl',['$scope',"post","Post","flash",
+app.controller('PostsCtrl',['$scope',"post","Post","flash",
     function($scope,post,Post,flash){
       $scope.post = post;
       $scope.addComment = function(){

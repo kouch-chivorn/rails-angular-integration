@@ -5,6 +5,7 @@
     <li ng-hide="signedIn()"><a href="#/register">Register</a></li>
     <li ng-show="signedIn()"><a href="#/">{{user.username}}</a></li>
     <li ng-show="signedIn()"><a ng-click="logout()">Log Out</a></li>
+    <li><a>{{ watch.now | date:"medium"}} </a></li>
 </ul>
   
 </div>

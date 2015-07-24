@@ -10,7 +10,16 @@
   <input type="text" class="form-control" placeholder="Link if any..." ng-model="link"></input>
 </div>
 <div class="form-group">
-  <textarea class="form-control" placeholder="Write something here..." ng-model="description"></textarea>
+  <input ng-model="email" class="form-control" type="email" placeholder="Email" />
+</div>
+<div class="form-group">
+  <input ng-model="author" class="form-control" type="text" placeholder="Author Name" />
+</div>
+<div class="form-group">
+  <textarea class="form-control" placeholder="Write your message here..." ng-model="description"></textarea>
+</div>
+<div ng-controller="MyController">
+  <pre> {{previewText}} </pre>
 </div>
 <button type="submit" class="btn btn-primary">Post</button>
 </form>
@@ -22,8 +31,8 @@
 <span>Sort By:
           <select ng-model="orderProp" class="form-control" style="width:30%">
     <option value="title">Alphabetically</option>
-    <option value="-view">Views</option>
-    <option value="-like">Likes</option>
+    <option value="view">Views</option>
+    <option value="like">Likes</option>
   </select>
 </span>
 </div>
@@ -31,16 +40,16 @@
   <strong class="alert-heading">Thanks!</strong>
   <span class="alert-message">{{flash.message}}</span>
 </div>
-<div class="row">
+<div class="row" ng-controller="NavCtrl">
   <h2> List of All Posts </h2>
-  <div dir-paginate="post in posts | orderBy:orderProp | filter:query | itemsPerPage: postsPerPage" total-items="data.totalCount" current-page="pagination.current">
+  <div dir-paginate="post in posts | orderBy:orderProp:true | filter:query | itemsPerPage: postsPerPage" total-items="data.totalCount" current-page="pagination.current">
     <span style="font-size:20px; margin-left:10px;">
-      <a ng-show="post.link" href="{{post.link}}">
-        {{post.title}}
-            </a>
-      <span ng-hide="post.link">
-        {{post.title}}
-            </span> has {{post.view}} views and {{post.like}} likes-----Posted by <a ng-href="#/users/{{post.user.username}}">{{post.user.username}}</a>
+      <a ng-show="post.link" href="{{post.link}}" class="capitalize">
+        {{post.title | capitalize}}
+      </a>
+      <span ng-hide="post.link" >
+        {{post.title | capitalize}}
+      </span> has {{post.view}} views and {{post.like}} likes-----Posted by <a ng-href="#/users/{{post.user.username}}">{{post.user.username}}</a>
       <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementLikes(post)">
       </span>
     </span>

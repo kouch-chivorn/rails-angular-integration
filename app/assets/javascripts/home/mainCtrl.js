@@ -1,5 +1,4 @@
-angular.module("flapperNews")
-.controller('MainCtrl', [
+app.controller('MainCtrl', [
     '$scope','Post',"flash",
     function($scope,Post,flash) {
       $scope.data = Post;
@@ -35,4 +34,16 @@ angular.module("flapperNews")
       };
       $scope.orderProp = "title";
     }
-  ]);
+  ])
+  .run(function($rootScope){
+    $rootScope.truth = "Truth is Life";
+  })
+  .controller("MyController",["$scope", "EmailParser", function($scope, EmailParser){
+    $scope.$watch("description", function(body){
+      if(body){
+        //var template = $interpolate(body);
+        $scope.previewText = EmailParser.parse(body,{email: $scope.email, title: $scope.title,
+                                      author: $scope.author});
+      }
+    });
+  }]);
