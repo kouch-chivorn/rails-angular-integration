@@ -1,7 +1,10 @@
 app.controller('MainCtrl', [
-    '$scope','Post',"flash",
-    function($scope,Post,flash) {
+    '$scope','Post',"flash","loginService",
+    function($scope,Post,flash,loginService) {
       $scope.data = Post;
+      $scope.message = loginService.getMessage();
+      flash.success = $scope.message[0];
+      console.log($scope.message);
       $scope.posts = Post.posts;
       $scope.postsPerPage = 10;
       $scope.pagination = {

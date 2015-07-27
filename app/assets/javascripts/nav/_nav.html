@@ -1,4 +1,5 @@
-<div class="collapse navbar-collapse pull-right navbar-inverse navbar" ng-controller="NavCtrl">
+<div class="navbar-collapse pull-right navbar-inverse navbar" ng-controller="NavCtrl">
+
 <ul class="nav navbar-nav">
     <li><a href="#/home">Home</a></li>
     <li ng-hide="signedIn()"><a href="#/login">Log In</a></li>
@@ -6,6 +7,8 @@
     <li ng-show="signedIn()"><a href="#/">{{user.username}}</a></li>
     <li ng-show="signedIn()"><a ng-click="logout()">Log Out</a></li>
     <li><a>{{ watch.now | date:"medium"}} </a></li>
+
 </ul>
   
 </div>
+

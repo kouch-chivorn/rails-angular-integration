@@ -7,8 +7,7 @@ app.config(["$stateProvider","$urlRouterProvider",
       .state('home',{
         url: "/home?page",
         templateUrl: 'home/_home.html',
-        controller: 'MainCtrl'
-        ,
+        controller: 'MainCtrl',
         params: {page: "1"},
         resolve: {
           postPromise: ["Post","$stateParams", function(Post,$stateParams){

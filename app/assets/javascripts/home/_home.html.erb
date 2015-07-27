@@ -1,6 +1,11 @@
 <div class="page-header">
   <h1>Flapper News</h1>
 </div>
+<div flash-alert="success" active-class="in" class="alert fade" duration="2000">
+  <strong class="alert-heading">Welcome!</strong>
+  <span class="alert-message">{{flash.message}}</span>
+</div>
+<my-Directive> </my-Directive>
 <form ng-submit="addPost()" style="margin-top:30px;">
   <h3>Add a new post</h3>
   <div class="form-group">
