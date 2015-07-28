@@ -1,7 +1,7 @@
-angular.module('flapperNews', ['ui.router',"templates","Devise",
+var app  = angular.module('flapperNews', ['ui.router',"templates","Devise",
 	"angular-flash.service","angular-flash.flash-alert-directive",
-  "angularUtils.directives.dirPagination"])
-  .config(["$stateProvider","$urlRouterProvider",
+  "angularUtils.directives.dirPagination"]);
+  app.config(["$stateProvider","$urlRouterProvider",
     function($stateProvider,$urlRouterProvider){
       $stateProvider
         .state('home',{
@@ -46,6 +46,11 @@ angular.module('flapperNews', ['ui.router',"templates","Devise",
         			$state.go("home");
         		})
         	}]
+        })
+        .state("calculator",{
+        	url: "/calculator",
+        	templateUrl:"calculator/_calculator.html",
+        	controller: "CalController"
         });
       $urlRouterProvider.otherwise("home");
     }])

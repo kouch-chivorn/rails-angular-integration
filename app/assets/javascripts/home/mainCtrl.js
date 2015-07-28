@@ -1,5 +1,4 @@
-angular.module("flapperNews")
-.controller('MainCtrl', [
+app.controller('MainCtrl', [
     '$scope','Post',"flash",
     function($scope,Post,flash) {
       $scope.data = Post;

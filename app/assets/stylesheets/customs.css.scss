@@ -33,3 +33,14 @@
 .alert-warn h4 {
     color: #c09853;
 }
+
+footer{
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}

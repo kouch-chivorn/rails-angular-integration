@@ -1,5 +1,4 @@
-angular.module("flapperNews")
-  .controller("NavCtrl", [
+app.controller("NavCtrl", [
     "$scope", "Auth", function($scope, Auth){
     	$scope.signedIn = Auth.isAuthenticated;
 
@@ -20,4 +19,17 @@ angular.module("flapperNews")
     	$scope.$on("devise:logout", function(e,user){
     		$scope.user = {};
     	});
+
+        $scope.clock = new Date();
+
+        var updateClock = function(){
+            var d = new Date();
+            $scope.clock = d.getFullYear() + "-"+ (d.getMonth()+1) + "-"+  
+            d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+        };
+        setInterval(function(){
+            $scope.$apply(updateClock)
+        },1000);
+
+        updateClock();
   	}]);

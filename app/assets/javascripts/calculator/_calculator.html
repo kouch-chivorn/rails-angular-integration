@@ -1,0 +1,14 @@
+<div class="page-header">
+	<h1> The simplest calculator </h1>
+</div>
+<div flash-alert="warn" active-class="in" class="alert fade" duration="2000">
+  <strong class="alert-heading">Warning:</strong>
+  <span class="alert-message">{{flash.message}}</span>
+</div>
+<input type="text" class="form-control" placeholder="Number1" ng-model="number1"></input>
+<input type="text" class="form-control" placeholder="Number2" ng-model="number2"></input>
+<button ng-click="add()" class="button">Add</button>
+<a ng-click="subtract()" class="button alert">Subtract</a>
+<button ng-click="multiply()" class="button">Multiply</button>
+<button ng-click="divide()" class="button">Divide</button>
+<h4>Result {{ result}} </h4>
