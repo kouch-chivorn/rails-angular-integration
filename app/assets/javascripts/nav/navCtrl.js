@@ -2,11 +2,14 @@
   app.controller("NavCtrl", [
     "$scope", "Auth", "flash", function($scope, Auth, flash){
     	$scope.signedIn = Auth.isAuthenticated;
-        $scope.successMessage ="";
     	$scope.logout = Auth.logout;
+        // $scope.user = {
+        //     status: false
+        // };
         
     	Auth.currentUser().then(function(user){
     		$scope.user = user;
+            $scope.user.status = true;
     	});
 
     	$scope.$on("devise:new-registration", function(e, user){
@@ -14,7 +17,6 @@
     	});
 
     	$scope.$on("devise:login", function(e, user){
-            $scope.successMessage ="You have successfully signed in!";
     		$scope.user = user;
     	});
 

@@ -5,29 +5,16 @@
   <strong class="alert-heading">Welcome!</strong>
   <span class="alert-message">{{flash.message}}</span>
 </div>
-<my-Directive> </my-Directive>
-<form ng-submit="addPost()" style="margin-top:30px;">
-  <h3>Add a new post</h3>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Title" ng-model="title"></input>
+
+<div ng-controller="SomeController">
+{{ someBareValue }}
+<button ng-click="someAction()">Communicate to child</button>
+<div ng-controller="ChildController">
+{{ someBareValue }}
+<button ng-click="childAction()">Communicate to parent</button>
 </div>
-<div class="form-group">
-  <input type="text" class="form-control" placeholder="Link if any..." ng-model="link"></input>
 </div>
-<div class="form-group">
-  <input ng-model="email" class="form-control" type="email" placeholder="Email" />
-</div>
-<div class="form-group">
-  <input ng-model="author" class="form-control" type="text" placeholder="Author Name" />
-</div>
-<div class="form-group">
-  <textarea class="form-control" placeholder="Write your message here..." ng-model="description"></textarea>
-</div>
-<div ng-controller="MyController">
-  <pre> {{previewText}} </pre>
-</div>
-<button type="submit" class="btn btn-primary">Post</button>
-</form>
+
 <div class="form-group">
   <span>Search By:
             <input type="text" ng-model="query" placeholder="Search" class="form-control"></input>
@@ -45,11 +32,12 @@
   <strong class="alert-heading">Thanks!</strong>
   <span class="alert-message">{{flash.message}}</span>
 </div>
+
 <div class="row" ng-controller="NavCtrl">
   <h2> List of All Posts </h2>
   <div dir-paginate="post in posts | orderBy:orderProp:true | filter:query | itemsPerPage: postsPerPage" total-items="data.totalCount" current-page="pagination.current">
     <span style="font-size:20px; margin-left:10px;">
-      <a ng-show="post.link" href="{{post.link}}" class="capitalize">
+      <a ng-show="post.link" href="#/posts/{{post.id}}" class="capitalize">
         {{post.title | capitalize}}
       </a>
       <span ng-hide="post.link" >
@@ -63,4 +51,31 @@
     </span>
   </div>
   <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+</div>
+
+<div ng-controller="NavCtrl">
+<div ng-controller="MainCtrl">
+  <form ng-submit="addPost()" style="margin-top:30px;" ng-show="user.status">
+  <h3>Add a new post</h3>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Title" ng-model="title"></input>
+</div>
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Link if any..." ng-model="link"></input>
+</div>
+<!-- <div class="form-group">
+  <input ng-model="email" class="form-control" type="email" placeholder="Email" />
+</div>
+<div class="form-group">
+  <input ng-model="author" class="form-control" type="text" placeholder="Author Name" />
+</div> -->
+<div class="form-group">
+  <textarea class="form-control" ng-disabled="isDisabled" placeholder="Write your message here..." ng-model="description"></textarea>
+</div>
+<button type="submit" ng-disabled="!title||!description" class="btn btn-primary">Post</button>
+<div ng-controller="MyController">
+  <pre> {{previewText}} </pre>
+</div>
+</form>
+</div>
 </div>

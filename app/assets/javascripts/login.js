@@ -9,8 +9,14 @@ app.service("loginService", function(){
     return messages;
   }
 
+  var emptyMessage = function(){
+    messages = [];
+    return messages;
+  }
+
   return {
     addMessage: addMessage,
-    getMessage: getMessage
+    getMessage: getMessage,
+    emptyMessage: emptyMessage
   };
 })

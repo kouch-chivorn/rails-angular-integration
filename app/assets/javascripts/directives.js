@@ -11,8 +11,18 @@ app.directive("notEmpty",function(){
 })
   .directive('myDirective', function(){
     return {
-      retrict: 'E',
+      retrict: 'A',
       replace: true,
-      template: "<a href='http://google.com'> Click me </a>"
+      scope: {
+        myUrl: "@",         //binding strategy
+        myLinkText: "@"
+      },
+      template: '\
+      <div>\
+        <label> Url: </label>\
+        <input type="text" ng-model="myUrl" />\
+        <a href="{{myUrl}}"> {{myLinkText}} </a>\
+      </div>\
+      '
     }
   });
