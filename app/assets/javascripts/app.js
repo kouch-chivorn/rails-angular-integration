@@ -4,17 +4,26 @@
 app.config(["$stateProvider","$urlRouterProvider",
   function($stateProvider,$urlRouterProvider){
     $stateProvider
+      // .state('home',{
+      //   url: "/home?page",
+      //   templateUrl: 'home/_home.html',
+      //   controller: 'MainCtrl',
+      //   params: {page: "1"},
+      //   resolve: {
+      //     postPromise: ["Post","$stateParams", function(Post,$stateParams){
+      //       return Post.getAll($stateParams.page);
+      //     }]
+      //   }
+      // })
       .state('home',{
-        url: "/home?page",
+        url: "/home",
         templateUrl: 'home/_home.html',
         controller: 'MainCtrl',
-        params: {page: "1"},
         resolve: {
-          postPromise: ["Post","$stateParams", function(Post,$stateParams){
-            return Post.getAll($stateParams.page);
+          postPromise: ["Post", function(Post){
+            return Post.getAll();
           }]
         }
-        
       })
       .state('posts',{
         url: '/posts/{id}',

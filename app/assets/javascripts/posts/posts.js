@@ -1,12 +1,18 @@
 app.factory('Post', ["$http", function($http) {
         var o = {
-            posts: [],
-            totalCount: 0
+            posts: []
+            // ,
+            // totalCount: 0
         };
 
-        o.getAll = function(pageNumber) {
-            return $http.get("/posts.json?page="+pageNumber).success(function(result) {
-                o.totalCount = result.Count;
+        // o.getAll = function(pageNumber) {
+        //     return $http.get("/posts.json?page="+pageNumber).success(function(result) {
+        //         o.totalCount = result.Count;
+        //         angular.copy(result.Posts, o.posts);
+        //     });
+        // };
+        o.getAll = function() {
+            return $http.get("/posts.json").success(function(result) {
                 angular.copy(result.Posts, o.posts);
             });
         };
@@ -21,8 +27,12 @@ app.factory('Post', ["$http", function($http) {
             return $http.put("/posts/" + post.id + "/like.json")
                 .success(function(data) {
                     if (!data.error) {
+                        console.log(data);
                         post.like += 1;
                     }
+                })
+                .error(function(data){
+                    console.log(data.error);
                 });
         };
 
