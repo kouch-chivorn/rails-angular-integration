@@ -10,7 +10,7 @@ app.controller('MainCtrl', [
       //$scope.data = Post;
 
       $scope.posts = Post.posts;
-      
+      console.log($scope.posts.length)
       $scope.postsPerPage = 10;
       
       $scope.pagination = {

@@ -13,7 +13,7 @@ app.factory('Post', ["$http", function($http) {
         // };
         o.getAll = function() {
             return $http.get("/posts.json").success(function(result) {
-                angular.copy(result.Posts, o.posts);
+                angular.copy(result, o.posts);
             });
         };
 
